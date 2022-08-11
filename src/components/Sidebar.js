@@ -14,19 +14,43 @@ import './SidebarStyles.css'
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
   return {
+    navbar: {
+      backgroundColor: theme.fn.variant({
+        variant: 'filled',
+        color: theme.primaryColor
+      }).background
+    },
+
+    version: {
+      backgroundColor: theme.fn.lighten(
+        theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
+          .background,
+        0.1
+      ),
+      color: theme.white,
+      fontWeight: 700
+    },
+
     header: {
       paddingBottom: theme.spacing.md,
-      marginBottom: theme.spacing.md * 2.5
+      marginBottom: theme.spacing.md * 2.5,
+      marginLeft: theme.spacing.md,
+      marginTop: theme.spacing.md,
+      borderBottom: `1px solid ${
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[4]
+          : theme.colors.gray[2]
+      }`
     },
 
     footer: {
       paddingTop: theme.spacing.md,
       marginTop: theme.spacing.md,
-      borderTop: `1px solid ${
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[4]
-          : theme.colors.gray[2]
-      }`
+      borderTop: `1px solid ${theme.fn.lighten(
+        theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
+          .background,
+        0.1
+      )}`
     },
 
     link: {
@@ -35,47 +59,17 @@ const useStyles = createStyles((theme, _params, getRef) => {
       alignItems: 'center',
       textDecoration: 'none',
       fontSize: theme.fontSizes.sm,
-      color: '#ffffff',
+      color: theme.white,
       padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
       borderRadius: theme.radius.sm,
       fontWeight: 500,
 
       '&:hover': {
-        backgroundColor:
-          theme.colorScheme === 'dark'
-            ? theme.colors.dark[6]
-            : theme.colors.gray[0],
-        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-
-        [`& .${icon}`]: {
-          color: theme.colorScheme === 'dark' ? theme.white : theme.black
-        }
-      }
-    },
-
-    linkIcon: {
-      ref: icon,
-      color:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[2]
-          : theme.colors.gray[6],
-      marginRight: theme.spacing.sm
-    },
-
-    linkActive: {
-      '&, &:hover': {
-        backgroundColor: theme.fn.variant({
-          variant: 'light',
-          color: theme.primaryColor
-        }).background,
-        color: theme.fn.variant({ variant: 'light', color: theme.primaryColor })
-          .color,
-        [`& .${icon}`]: {
-          color: theme.fn.variant({
-            variant: 'light',
-            color: theme.primaryColor
-          }).color
-        }
+        backgroundColor: theme.fn.lighten(
+          theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
+            .background,
+          0.1
+        )
       }
     }
   }
@@ -115,28 +109,24 @@ export const Sidebar = () => {
   ))
 
   return (
-    <div className='sidebar'>
-      <Navbar height={700} width={{ sm: 300 }} p='md'>
-        <Navbar.Section grow>
-          <Group className={classes.header} position='apart'>
-            <span sx={{ fontWeight: 700 }}>
-              Matriz de Analisis de Riesgos 👷‍♂️
-            </span>
-          </Group>
-          {links}
-        </Navbar.Section>
+    <Navbar height={700} width={{ sm: 300 }} p='md'>
+      <Navbar.Section grow>
+        <Group className={classes.header} position='apart'>
+          <span sx={{ fontWeight: 700 }}>Matriz de Analisis de Riesgos 👷‍♂️</span>
+        </Group>
+        {links}
+      </Navbar.Section>
 
-        <Navbar.Section className={classes.footer}>
-          <a
-            href='#'
-            className={classes.link}
-            onClick={(event) => event.preventDefault()}
-          >
-            <IconLogout className={classes.linkIcon} stroke={1.5} />
-            <span>Cerrar Sesion</span>
-          </a>
-        </Navbar.Section>
-      </Navbar>
-    </div>
+      <Navbar.Section className={classes.footer}>
+        <a
+          href='#'
+          className={classes.link}
+          onClick={(event) => event.preventDefault()}
+        >
+          <IconLogout className={classes.linkIcon} stroke={1.5} />
+          <span>Cerrar Sesion</span>
+        </a>
+      </Navbar.Section>
+    </Navbar>
   )
 }
