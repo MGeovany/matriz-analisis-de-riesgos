@@ -14,7 +14,8 @@ import './SidebarStyles.css'
 const useStyles = createStyles((theme, _params, getRef) => {
   return {
     navbar: {
-      backgroundColor: theme.colors.dark[5]
+      backgroundColor: theme.colors.dark[5],
+      height: '100vh'
     },
 
     header: {

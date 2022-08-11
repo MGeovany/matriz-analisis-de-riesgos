@@ -1,5 +1,10 @@
 import React from 'react'
+import { Container } from '@mantine/core'
 
 export const Dashboard = () => {
-  return <div>Dashboard</div>
+  return (
+    <div>
+      <Container>Dashboard</Container>
+    </div>
+  )
 }

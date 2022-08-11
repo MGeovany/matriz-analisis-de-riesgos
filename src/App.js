@@ -8,13 +8,15 @@ import { Riesgos } from './pages/riesgos/Riesgos'
 
 function App() {
   return (
-    <Router>
-      <Sidebar />
-      <Routes>
-        <Route path='/' element={<Dashboard />} />
-        <Route path='/riesgos' element={<Riesgos />} />
-      </Routes>
-    </Router>
+    <div className='App'>
+      <Router>
+        <Sidebar />
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/riesgos' element={<Riesgos />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 
