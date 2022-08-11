@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { createStyles, Navbar, Group } from '@mantine/core'
+import { createStyles, Navbar, Group, Text } from '@mantine/core'
 import {
   IconLayoutDashboard,
   IconAlertTriangle,
@@ -12,45 +12,31 @@ import { Link } from 'react-router-dom'
 import './SidebarStyles.css'
 
 const useStyles = createStyles((theme, _params, getRef) => {
-  const icon = getRef('icon')
   return {
     navbar: {
-      backgroundColor: theme.fn.variant({
-        variant: 'filled',
-        color: theme.primaryColor
-      }).background
-    },
-
-    version: {
-      backgroundColor: theme.fn.lighten(
-        theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-          .background,
-        0.1
-      ),
-      color: theme.white,
-      fontWeight: 700
+      backgroundColor: theme.colors.dark[5]
     },
 
     header: {
       paddingBottom: theme.spacing.md,
+      display: 'flex',
+      flexDirection: 'column',
+      alignContent: 'center',
       marginBottom: theme.spacing.md * 2.5,
-      marginLeft: theme.spacing.md,
       marginTop: theme.spacing.md,
-      borderBottom: `1px solid ${
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[4]
-          : theme.colors.gray[2]
-      }`
+      borderBottom: `1px solid ${theme.colors.gray[7]}`
+    },
+
+    section: {
+      color: theme.white
     },
 
     footer: {
+      color: theme.white,
+
       paddingTop: theme.spacing.md,
       marginTop: theme.spacing.md,
-      borderTop: `1px solid ${theme.fn.lighten(
-        theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-          .background,
-        0.1
-      )}`
+      borderTop: `1px solid ${theme.colors.gray[7]}`
     },
 
     link: {
@@ -59,17 +45,13 @@ const useStyles = createStyles((theme, _params, getRef) => {
       alignItems: 'center',
       textDecoration: 'none',
       fontSize: theme.fontSizes.sm,
-      color: theme.white,
+      marginTop: theme.spacing.lg,
       padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
       borderRadius: theme.radius.sm,
       fontWeight: 500,
 
       '&:hover': {
-        backgroundColor: theme.fn.lighten(
-          theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-            .background,
-          0.1
-        )
+        backgroundColor: theme.colors.dark[7]
       }
     }
   }
@@ -104,15 +86,15 @@ export const Sidebar = () => {
       }}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
+      <Text sx={{ paddingLeft: '15px' }}>{item.label}</Text>
     </Link>
   ))
 
   return (
-    <Navbar height={700} width={{ sm: 300 }} p='md'>
-      <Navbar.Section grow>
+    <Navbar height={700} width={{ sm: 300 }} p='md' className={classes.navbar}>
+      <Navbar.Section grow className={classes.section}>
         <Group className={classes.header} position='apart'>
-          <span sx={{ fontWeight: 700 }}>Matriz de Analisis de Riesgos 👷‍♂️</span>
+          <Text sx={{ fontWeight: 700 }}>Matriz de Analisis de Riesgos 👷‍♂️</Text>
         </Group>
         {links}
       </Navbar.Section>
@@ -124,7 +106,7 @@ export const Sidebar = () => {
           onClick={(event) => event.preventDefault()}
         >
           <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Cerrar Sesion</span>
+          <Text sx={{ paddingLeft: '15px' }}>Cerrar Sesion</Text>
         </a>
       </Navbar.Section>
     </Navbar>
