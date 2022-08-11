@@ -46,8 +46,8 @@ const useStyles = createStyles((theme, _params, getRef) => {
       alignItems: 'center',
       textDecoration: 'none',
       fontSize: theme.fontSizes.sm,
-      marginTop: theme.spacing.lg,
-      padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+      marginTop: theme.spacing.xs,
+      padding: `${theme.spacing.lg}px ${theme.spacing.sm}px`,
       borderRadius: theme.radius.sm,
       fontWeight: 500,
 
@@ -72,23 +72,16 @@ const data = [
 
 export const Sidebar = () => {
   const { classes, cx } = useStyles()
-  const [active, setActive] = useState('Dashboard')
 
   const links = data.map((item) => (
-    <Link
-      key={item.label}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === item.label
-      })}
-      to={item.route}
-      onClick={(event) => {
-        event.preventDefault()
-        setActive(item.label)
-      }}
-    >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <Text sx={{ paddingLeft: '15px' }}>{item.label}</Text>
-    </Link>
+    <div key={item.label}>
+      <Link to={item.route} className={classes.link}>
+        <item.icon size={20} />
+        <Text sx={{ paddingLeft: '15px' }} key={item.label}>
+          {item.label}
+        </Text>
+      </Link>
+    </div>
   ))
 
   return (

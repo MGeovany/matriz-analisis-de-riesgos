@@ -5,7 +5,7 @@ import './RiesgosStyles.css'
 export const Riesgos = () => {
   return (
     <>
-      <div className='riesgos'>
+      <div>
         <Container>
           <p>Riesgos</p>
           <p className='content'>Riesgos contenido</p>

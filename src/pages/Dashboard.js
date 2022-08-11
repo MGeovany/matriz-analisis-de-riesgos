@@ -4,7 +4,10 @@ import { Container } from '@mantine/core'
 export const Dashboard = () => {
   return (
     <div>
-      <Container>Dashboard</Container>
+      <Container>
+        <p>Dashboard</p>
+        <p className='content'>Dashboard contenido</p>
+      </Container>
     </div>
   )
 }
