@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from '@mantine/core'
 
 import './RiesgosStyles.css'
 export const Riesgos = () => {
@@ -7,10 +6,9 @@ export const Riesgos = () => {
     <>
       <div className='content'>
         <div className='containerPrincipal'>
-          <p className='riesgos'>Riesgos</p>
+          <div className='riesgos'>Riesgos</div>
           <hr className='hrContainer'></hr>
-          <div className='containerTabla'>
-          </div>
+          <div className='containerTabla'></div>
         </div>
       </div>
     </>
