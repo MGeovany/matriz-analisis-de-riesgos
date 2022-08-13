@@ -5,11 +5,13 @@ import './RiesgosStyles.css'
 export const Riesgos = () => {
   return (
     <>
-      <div>
-        <Container>
-          <p>Riesgos</p>
-          <p className='content'>Riesgos contenido</p>
-        </Container>
+      <div className='content'>
+        <div className='containerPrincipal'>
+          <p className='riesgos'>Riesgos</p>
+          <hr className='hrContainer'></hr>
+          <div className='containerTabla'>
+          </div>
+        </div>
       </div>
     </>
   )

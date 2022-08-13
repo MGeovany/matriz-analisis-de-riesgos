@@ -1,8 +1,27 @@
-.riesgos {
-  font-family: var(--sen);
-  font-size: var(--font-size-base);
-}
 .content {
-  font-size: var(--font-size-text);
-  font-size: var(--font-size-text);
+  background-color: whitesmoke;
+  padding-right: 38px;
+}
+
+.riesgos {
+  font-family: 'verdana';
+  font-size: 23px;
+}
+
+.containerPrincipal{
+  margin: 40px 20px 20px;
+  width: 1160px;
+}
+
+.hrContainer{
+  border: 1px solid #E6E7E8;
+}
+
+.containerTabla{
+  margin: 35px 20px 0px;
+  position: relative;
+  width: 1120px;
+  height: 550px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
 }
