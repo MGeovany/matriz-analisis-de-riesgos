@@ -126,7 +126,7 @@ const elements = [
 
 export function TablaRiesgos() {
   const rows = elements.map((element, index) => (
-    <tr key={element.name}>
+    <tr key={index}>
       <td>{element.name}</td>
       <td>{element.impact}</td>
       <td>{element.prob}</td>
