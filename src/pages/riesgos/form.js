@@ -4,7 +4,12 @@ import { useForm } from '@mantine/form'
 import { Opciones } from '../../API'
 
 /* eslint-disable react/prop-types */
-export default function Form({ trigger: Trigger, handler }) {
+export default function Form({
+  trigger: Trigger,
+  handler,
+  action = 'add',
+  riesgo
+}) {
   const [open, setOpen] = React.useState(false)
   const [ListaImpacto, setListaImpacto] = React.useState([])
   const [ListaPosibilidad, setListaPosibilidad] = React.useState([])
@@ -12,21 +17,20 @@ export default function Form({ trigger: Trigger, handler }) {
 
   const form = useForm({
     initialValues: {
-      Nombre: '',
-      AfectaCosto: false,
-      ValorCosto: null,
-      AfectaTiempo: false,
-      AfectaAlcance: false,
-      AfectaCalidad: false,
-      IdPosibilidad: 0,
-      IdImpacto: 0,
-      Descripcion: ''
+      Nombre: riesgo ? riesgo.Nombre : '',
+      AfectaCosto: riesgo ? riesgo.AfectaCosto : false,
+      ValorCosto: riesgo ? riesgo.ValorCosto : null,
+      AfectaTiempo: riesgo ? riesgo.AfectaTiempo : false,
+      AfectaAlcance: riesgo ? riesgo.AfectaAlcance : false,
+      AfectaCalidad: riesgo ? riesgo.AfectaCalidad : false,
+      IdPosibilidad: riesgo ? riesgo.IdPosibilidad : 0,
+      IdImpacto: riesgo ? riesgo.IdImpacto : 0,
+      Descripcion: riesgo ? riesgo.Descripcion : ''
     },
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Correo Invalido')
     }
   })
-
   React.useState(() => {
     Opciones().Impacto().then(data => setListaImpacto(data)).catch(error => console.error(error))
     Opciones().Posibilidad().then(data => setListaPosibilidad(data)).catch(error => console.error(error))
