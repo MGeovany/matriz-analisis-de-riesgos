@@ -71,7 +71,7 @@ const data = [
 ]
 
 export const Sidebar = () => {
-  const { classes, cx } = useStyles()
+  const { classes } = useStyles()
 
   const links = data.map((item) => (
     <div key={item.label}>
