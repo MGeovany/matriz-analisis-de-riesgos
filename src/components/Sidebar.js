@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createStyles, Navbar, Group, Text } from '@mantine/core'
 import {
   IconLayoutDashboard,
@@ -71,7 +71,7 @@ const data = [
 ]
 
 export const Sidebar = () => {
-  const { classes, cx } = useStyles()
+  const { classes } = useStyles()
 
   const links = data.map((item) => (
     <div key={item.label}>
