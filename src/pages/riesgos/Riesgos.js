@@ -1,25 +1,29 @@
 import React from 'react'
 import { TablaRiesgos } from './TablaRiesgo'
-import { Button } from '@mantine/core'
+import { Button, Container } from '@mantine/core'
 import './RiesgosStyles.css'
+import { Header } from '../../components/Header'
 
 export const Riesgos = () => {
   return (
     <>
-      <div className='content'>
-        <div className='containerPrincipal'>
-          <div className='riesgos'>Riesgos</div>
-          <hr className='hrContainer'></hr>
+      <div className='side-container'>
+        <Header title='Riesgos' />
+        <Container>
           <div className='containerTabla'>
-            <TablaRiesgos/>
+            <TablaRiesgos />
             <nav>
               <ul className='nav_links'>
-              <li><Button >Crear Riesgo</Button></li>
-              <li><Button variant='light'>Descargar PDF</Button></li>
+                <li>
+                  <Button>Crear Riesgo</Button>
+                </li>
+                <li>
+                  <Button variant='light'>Descargar PDF</Button>
+                </li>
               </ul>
             </nav>
           </div>
-        </div>
+        </Container>
       </div>
     </>
   )

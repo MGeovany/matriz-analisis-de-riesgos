@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Dashboard } from './pages/Dashboard'
+import { Dashboard } from './pages/dashboard/Dashboard'
 import { Sidebar } from './components/Sidebar'
 import { Riesgos } from './pages/riesgos/Riesgos'
 
