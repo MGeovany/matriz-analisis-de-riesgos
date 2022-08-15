@@ -85,7 +85,7 @@ export const Sidebar = () => {
   ))
 
   return (
-    <Navbar height={700} width={{ sm: 300 }} p='md' className={classes.navbar}>
+    <Navbar width={{ sm: 300 }} p='md' className={classes.navbar}>
       <Navbar.Section grow className={classes.section}>
         <Group className={classes.header} position='apart'>
           <Text sx={{ fontWeight: 700 }}>Matriz de Analisis de Riesgos 👷‍♂️</Text>
