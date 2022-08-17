@@ -39,18 +39,20 @@ export const Riesgos = () => {
       <Header title='Riesgos' />
       <Form trigger={<Button>Nuevo</Button>} handler={onAdd}/>
       <div className='containerTabla'>
-        <TablaRiesgos onEdit={onEdit} onDelete={onDelete} elements={RiesgosList} />
+        <div className='containerTabla2'>
+          <TablaRiesgos onEdit={onEdit} onDelete={onDelete} elements={RiesgosList} />
+        </div>
+        <div>
+            <ul className='nav_links'>
+              <li>
+                <Form trigger={<Button>Nuevo</Button>} handler={onAdd}/>
+              </li>
+              <li>
+                <Button variant='light'>Descargar PDF</Button>
+              </li>
+            </ul>
+          </div>
       </div>
-      <nav>
-          <ul className='nav_links'>
-            <li>
-              <Form trigger={<Button>Nuevo</Button>} handler={onAdd}/>
-            </li>
-            <li>
-              <Button variant='light'>Descargar PDF</Button>
-            </li>
-          </ul>
-        </nav>
     </div>
   </>
   )

@@ -19,8 +19,15 @@
   min-height: calc(100vh - 180px);
   background-color: #ffffff;
   border-radius: 10px;
-
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.containerTabla2{
+  margin: 35px 0px 0px;
+  width: 100%;
+  min-height: 480px;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 .nav_links {
