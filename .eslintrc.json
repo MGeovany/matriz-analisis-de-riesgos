@@ -19,6 +19,8 @@
     ],
     "rules": {
         "no-unused-vars": "warn",
-        "space-before-function-paren": ["error", "never"]
+        "space-before-function-paren": ["error", "never"],
+        "react/prop-types": ["error", { "ignore": ["children"] }]
+
     }
 }

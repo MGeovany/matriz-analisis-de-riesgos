@@ -1,44 +1,57 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Container, Button } from '@mantine/core'
-import './RiesgosStyles.css'
 import Form from './form'
 import { Riesgo } from '../../API'
-
-const riesgoPruebaEdit = {
-  Id: 'MAR-003',
-  Nombre: 'RIESGO A EDITAR',
-  AfectaCosto: true,
-  ValorCosto: 1578.40,
-  AfectaTiempo: true,
-  AfectaAlcance: false,
-  AfectaCalidad: false,
-  IdPosibilidad: 1,
-  IdImpacto: 2
-}
+import { TablaRiesgos } from './TablaRiesgo'
+import { Header } from '../../components/Header'
+import './RiesgosStyles.css'
 
 export const Riesgos = () => {
+  const [RiesgosList, setRiesgosList] = React.useState([])
   function onAdd(riesgo) {
     Riesgo().save(riesgo).then(res => {
-      console.log('Listo!, ingresar el Array de listado')
+      setRiesgosList([...RiesgosList, riesgo])
     }).catch(error => { console.error(error.response) })
   }
 
   function onEdit(riesgo) {
     Riesgo().edit(riesgo).then(res => {
-      console.log('Listo!, ingresar el Array de listado')
+      setRiesgosList([...RiesgosList.filter(r => r.Id !== riesgo.Id), riesgo])
     }).catch(error => { console.error(error.response) })
   }
 
+  function onDelete(riesgoId) {
+    Riesgo().delete(riesgoId).then(res => {
+      setRiesgosList([...RiesgosList.filter(r => r.Id !== riesgoId)])
+    }).catch(error => { console.error(error.response) })
+  }
+
+  React.useEffect(() => {
+    Riesgo().get().then(res => {
+      setRiesgosList(res)
+    }).catch(error => console.error(error))
+  }, [])
+
   return (
     <>
-      <div>
-        <Container>
-          <p>Riesgos</p>
-          <p className='content'>Riesgos contenido</p>
-          <Form trigger={<Button>Nuevo</Button>} handler={onAdd}/>
-          <Form trigger={<Button color='green'>Editar</Button>} handler={onEdit} riesgo={riesgoPruebaEdit}/>
-        </Container>
+    <div className='side-container'>
+      <Header title='Riesgos' />
+      <Form trigger={<Button>Nuevo</Button>} handler={onAdd}/>
+      <div className='containerTabla'>
+        <TablaRiesgos onEdit={onEdit} onDelete={onDelete} elements={RiesgosList} />
       </div>
-    </>
+      <nav>
+          <ul className='nav_links'>
+            <li>
+              <Form trigger={<Button>Nuevo</Button>} handler={onAdd}/>
+            </li>
+            <li>
+              <Button variant='light'>Descargar PDF</Button>
+            </li>
+          </ul>
+        </nav>
+    </div>
+  </>
   )
 }

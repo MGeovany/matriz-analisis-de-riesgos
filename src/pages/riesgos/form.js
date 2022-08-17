@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, TextInput, Group, Button, Grid, Select, Checkbox, Stack, Textarea, Badge } from '@mantine/core'
+import { Modal, TextInput, Group, Button, Grid, Select, Checkbox, Stack, Textarea, Badge, Text } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { Opciones } from '../../API'
 
@@ -17,6 +17,7 @@ export default function Form({
 
   const form = useForm({
     initialValues: {
+      Id: riesgo ? riesgo.Id : '',
       Nombre: riesgo ? riesgo.Nombre : '',
       AfectaCosto: riesgo ? riesgo.AfectaCosto : false,
       ValorCosto: riesgo ? riesgo.ValorCosto : null,
@@ -37,7 +38,14 @@ export default function Form({
     Opciones().NivelRiesgo().then(data => setListaNivelRiesgo(data)).catch(error => console.error(error))
   }, [])
   function submitForm() {
-    handler(form.values)
+    handler({
+      ...form.values,
+      PuntajeImpacto: ListaImpacto.find(item => item.value === form.values.IdImpacto).puntaje,
+      NivelImpacto: ListaImpacto.find(item => item.value === form.values.IdImpacto).label,
+      PuntajePosibilidad: ListaPosibilidad.find(item => item.value === form.values.IdPosibilidad).puntaje,
+      NivelPosibilidad: ListaPosibilidad.find(item => item.value === form.values.IdPosibilidad).label,
+      NivelRiesgoDescripcion: getNivelRiesgo(form.values.NivelRiesgo)
+    })
     setOpen(false)
   }
   return (
@@ -49,7 +57,7 @@ export default function Form({
         onClose={() => setOpen(false)}
         title='Nuevo Riesgo'
         gutter="xl">
-          <form onSubmit={form.onSubmit((values) => console.log(values))}>
+          <form>
           <Grid grow gutter="xl">
             <Grid.Col md={4} xs={12}>
               <Stack >
@@ -77,7 +85,7 @@ export default function Form({
                   data={ListaPosibilidad}
                 />
                 <span>
-                  <p>Nivel de Riesgo</p>
+                  <Text size="lg">Nivel de Riesgo</Text>
                     <NivelRiesgoItem
                       puntaje={ getPuntaje(form.values.IdImpacto, form.values.IdPosibilidad) }
                       texto={ getNivelRiesgo(getPuntaje(form.values.IdImpacto, form.values.IdPosibilidad)) }
@@ -89,7 +97,7 @@ export default function Form({
 
             <Grid.Col lg={6} xs={12}>
             <Stack>
-              <p>Intereses Afectados</p>
+              <Text>Intereses Afectados</Text>
               <Group >
                 <Checkbox label="Afecta Costo" radius="md" {...form.getInputProps('AfectaCosto', { type: 'checkbox' }) }/>
                 {(form.getInputProps('AfectaCosto').value)

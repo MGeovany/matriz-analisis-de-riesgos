@@ -31,7 +31,7 @@ export const Riesgo = () => ({
     return response.data
   },
   edit: async(riesgo) => {
-    const response = await api.put(`/riesgo/${riesgo.id}`, riesgo)
+    const response = await api.put(`/riesgo/${riesgo.Id}`, riesgo)
     return response.data
   },
   delete: async(id) => {

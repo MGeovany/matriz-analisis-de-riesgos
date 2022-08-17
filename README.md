@@ -12,7 +12,7 @@
 👤 **Marlon Castro, Alejandro Chavarria, Joel Diaz, Randel Caballero**
 
 * Website: https://github.com/MGeovany/matriz-analisis-de-riesgos
-* Github: [@mgeovany](https://github.com/mgeovany), [@RandellSCaballero](https://github.com/RandellSCaballero), [@chavarriaa](https://github.com/chavarriaa)
+* Github: [@mgeovany](https://github.com/mgeovany), [@RandellSCaballero](https://github.com/RandellSCaballero), [@chavarriaa](https://github.com/chavarriaa) [@mjoeldiazm](https://github.com/mjoeldiazm)
 
 
 ## 🤝 Contributing
