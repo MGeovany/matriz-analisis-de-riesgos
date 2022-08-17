@@ -1,40 +1,41 @@
+/* eslint-disable space-before-function-paren */
 import axios from 'axios'
 
-const server = 'http://localhost:3234'
+const server = 'https://afternoon-river-54760.herokuapp.com/'
 
 const api = axios.create({
   baseURL: server
 })
 
 export const Opciones = () => ({
-  Impacto: async() => {
+  Impacto: async () => {
     const response = await api.get('/opciones/impacto')
     return response.data
   },
-  Posibilidad: async() => {
+  Posibilidad: async () => {
     const response = await api.get('/opciones/posibilidad')
     return response.data
   },
-  NivelRiesgo: async() => {
+  NivelRiesgo: async () => {
     const response = await api.get('/nivelRiesgo')
     return response.data
   }
 })
 
 export const Riesgo = () => ({
-  get: async() => {
+  get: async () => {
     const response = await api.get('/riesgo')
     return response.data
   },
-  save: async(riesgo) => {
+  save: async (riesgo) => {
     const response = await api.post('/riesgo', riesgo)
     return response.data
   },
-  edit: async(riesgo) => {
+  edit: async (riesgo) => {
     const response = await api.put(`/riesgo/${riesgo.Id}`, riesgo)
     return response.data
   },
-  delete: async(id) => {
+  delete: async (id) => {
     const response = await api.delete(`/riesgo/${id}`)
     return response.data
   }
