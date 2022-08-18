@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const server = 'http://localhost:3234'
+const server = 'https://afternoon-river-54760.herokuapp.com/'
 
 const api = axios.create({
   baseURL: server

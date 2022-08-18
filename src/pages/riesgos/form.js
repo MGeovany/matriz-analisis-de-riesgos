@@ -44,6 +44,7 @@ export default function Form({
       NivelImpacto: ListaImpacto.find(item => item.value === form.values.IdImpacto).label,
       PuntajePosibilidad: ListaPosibilidad.find(item => item.value === form.values.IdPosibilidad).puntaje,
       NivelPosibilidad: ListaPosibilidad.find(item => item.value === form.values.IdPosibilidad).label,
+      NivelRiesgo: ListaPosibilidad.find(item => item.value === form.values.IdPosibilidad).puntaje * ListaImpacto.find(item => item.value === form.values.IdImpacto).puntaje,
       NivelRiesgoDescripcion: getNivelRiesgo(form.values.NivelRiesgo)
     })
     setOpen(false)

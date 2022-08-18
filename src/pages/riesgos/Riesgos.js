@@ -16,6 +16,7 @@ export const Riesgos = () => {
   }
 
   function onEdit(riesgo) {
+    console.log(riesgo)
     Riesgo().edit(riesgo).then(res => {
       setRiesgosList([...RiesgosList.filter(r => r.Id !== riesgo.Id), riesgo])
     }).catch(error => { console.error(error.response) })
