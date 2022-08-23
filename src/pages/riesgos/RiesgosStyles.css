@@ -13,7 +13,11 @@
   border: 1px solid #e6e7e8;
 }
 
-.containerTabla {
+.containerTable {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   margin: 35px 0px 0px;
   width: 100%;
   min-height: calc(100vh - 180px);
@@ -22,20 +26,12 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.containerTabla2 {
-  margin: 35px 0px 0px;
-  padding: 3rem;
-  min-height: 480px;
-  background-color: #ffffff;
-  border-radius: 10px;
-}
-
 .nav_links {
+  display: flex;
   list-style: none;
-  float: right;
+  justify-content: flex-end;
 }
 
-.nav_links li {
-  display: inline-block;
+.nav_links li:first-child {
   padding: 0px 20px 10px;
 }

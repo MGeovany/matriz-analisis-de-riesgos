@@ -34,7 +34,7 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
       </td>
       <td>
         <Delete
-          trigger={<IconTrash cursor='pointer' color='#f05761' />}
+          trigger={<IconTrash cursor='pointer' color='#12131c' />}
           handler={onDelete}
           riesgo={element.Id}
         />
@@ -43,7 +43,7 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
   ))
 
   return (
-    <div className='contenedorTabla'>
+    <div style={{ padding: '2rem', overflowY: 'scroll', maxHeight: '550px' }}>
       <Table highlightOnHover>
         <thead>
           <tr>

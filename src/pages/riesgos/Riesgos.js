@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@mantine/core'
 import Form from './Form'
 import { Riesgo } from '../../API'
@@ -45,7 +45,7 @@ export const Riesgos = () => {
       })
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     Riesgo()
       .get()
       .then((res) => {
@@ -58,15 +58,14 @@ export const Riesgos = () => {
     <>
       <div className='side-container'>
         <Header title='Riesgos' />
-        <div className='containerTabla'>
-          <div className='containerTabla2'>
-            <TablaRiesgos
-              onEdit={onEdit}
-              onDelete={onDelete}
-              elements={RiesgosList}
-            />
-          </div>
-          <div>
+        <div className='containerTable'>
+          <TablaRiesgos
+            onEdit={onEdit}
+            onDelete={onDelete}
+            elements={RiesgosList}
+          />
+
+          <div style={{ padding: '2rem' }}>
             <ul className='nav_links'>
               <li>
                 <Form trigger={<Button>Nuevo</Button>} handler={onAdd} />
