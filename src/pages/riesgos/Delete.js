@@ -11,7 +11,7 @@ export default function Eliminar({ trigger: Trigger, handler, riesgo }) {
   }
   return (
     <>
-      <div onClick={() => setOpen(true)}>{Trigger}</div>\
+      <div onClick={() => setOpen(true)}>{Trigger}</div>
       <Modal
         size='xl'
         centered

@@ -98,7 +98,6 @@ export const Riesgos = () => {
             </ul>
           </div>
         </div>
-        >>>>>>> 2efda12a7640fefc16737b4a9d64117fbe47379e
       </div>
     </>
   )
