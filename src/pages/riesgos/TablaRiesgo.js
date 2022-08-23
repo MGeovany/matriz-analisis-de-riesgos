@@ -43,7 +43,14 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
   ))
 
   return (
-    <div style={{ padding: '2rem', overflowY: 'scroll', maxHeight: '550px' }}>
+    <div
+      style={{
+        padding: '2rem',
+        overflowY: 'scroll',
+        maxHeight: '550px',
+        borderBottom: '1px solid #e7f5ff'
+      }}
+    >
       <Table highlightOnHover>
         <thead>
           <tr>
