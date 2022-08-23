@@ -4,7 +4,7 @@ import './RiesgosStyles.css'
 import './TablaRiesgo.css'
 import { IconEye, IconTrash } from '@tabler/icons'
 import Form from './Form'
-import Eliminar from './Eliminar'
+import Delete from './Delete'
 import { Opciones } from '../../API'
 
 /* eslint-disable react/prop-types */
@@ -33,7 +33,7 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
         />
       </td>
       <td>
-        <Eliminar
+        <Delete
           trigger={<IconTrash cursor='pointer' color='#f05761' />}
           handler={onDelete}
           riesgo={element.Id}
