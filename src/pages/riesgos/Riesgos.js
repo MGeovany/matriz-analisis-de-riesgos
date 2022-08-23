@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
+
 import { Button } from '@mantine/core'
 import Form from './Form'
 import { Riesgo } from '../../API'
@@ -77,6 +78,27 @@ export const Riesgos = () => {
             </li>
           </ul>
         </nav>
+        =======
+        <div className='containerTabla'>
+          <div className='containerTabla2'>
+            <TablaRiesgos
+              onEdit={onEdit}
+              onDelete={onDelete}
+              elements={RiesgosList}
+            />
+          </div>
+          <div>
+            <ul className='nav_links'>
+              <li>
+                <Form trigger={<Button>Nuevo</Button>} handler={onAdd} />
+              </li>
+              <li>
+                <Button variant='light'>Descargar PDF</Button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        >>>>>>> 2efda12a7640fefc16737b4a9d64117fbe47379e
       </div>
     </>
   )

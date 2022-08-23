@@ -14,12 +14,12 @@ import './SidebarStyles.css'
 const useStyles = createStyles((theme, _params, getRef) => {
   return {
     navbar: {
-      backgroundColor: theme.colors.dark[5],
+      backgroundColor: theme.colors.darkblue,
       height: '100vh'
     },
 
     header: {
-      paddingBottom: theme.spacing.md,
+      paddingBottom: theme.spacing.lg * 1.7,
       display: 'flex',
       flexDirection: 'column',
       alignContent: 'center',
