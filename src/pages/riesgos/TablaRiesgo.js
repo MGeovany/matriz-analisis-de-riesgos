@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Table } from '@mantine/core'
 import './RiesgosStyles.css'
 import './TablaRiesgo.css'
@@ -9,8 +9,8 @@ import { Opciones } from '../../API'
 
 /* eslint-disable react/prop-types */
 export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
-  const [ListaNivelRiesgo, setListaNivelRiesgo] = React.useState([])
-  React.useState(() => {
+  const [ListaNivelRiesgo, setListaNivelRiesgo] = useState([])
+  useState(() => {
     Opciones()
       .NivelRiesgo()
       .then((data) => setListaNivelRiesgo(data))

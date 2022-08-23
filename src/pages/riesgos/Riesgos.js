@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@mantine/core'
 import Form from './Form'
 import { Riesgo } from '../../API'
@@ -8,7 +8,7 @@ import { Header } from '../../components/Header'
 import './RiesgosStyles.css'
 
 export const Riesgos = () => {
-  const [RiesgosList, setRiesgosList] = React.useState([])
+  const [RiesgosList, setRiesgosList] = useState([])
   function onAdd(riesgo) {
     Riesgo()
       .save(riesgo)
