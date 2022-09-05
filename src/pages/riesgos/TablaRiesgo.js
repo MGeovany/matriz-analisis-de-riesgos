@@ -1,13 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Table } from '@mantine/core'
 import './RiesgosStyles.css'
-import './TablaRiesgo.css'
 import { IconEye, IconTrash } from '@tabler/icons'
 import Form from './Form'
 import Delete from './Delete'
 import { Opciones } from '../../API'
 
-/* eslint-disable react/prop-types */
 export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
   const [ListaNivelRiesgo, setListaNivelRiesgo] = React.useState([])
   React.useState(() => {

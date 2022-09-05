@@ -35,3 +35,29 @@
 .nav_links li:first-child {
   padding: 0px 20px 10px;
 }
+.ojo {
+  width: 3vh;
+  height: 3vh;
+  cursor: pointer;
+}
+
+.borrar {
+  width: 3vh;
+  height: 3vh;
+  cursor: pointer;
+}
+
+.contenedorTabla {
+  width: 100%;
+  max-height: 450px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.contenedorTabla th {
+  position: sticky;
+  top: 0px;
+  background-color: #f3f3f3;
+}

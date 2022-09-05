@@ -9,18 +9,19 @@ import {
   IconCalendarEvent
 } from '@tabler/icons'
 import { MatrixRisk } from '../../components/MatrixRisk'
+
 export const Dashboard = ({ riesgos, procesos, planes, eventos }) => {
   return (
     <div className='side-container'>
       <Header title='Bienvenido, Jhon Doe' />
       <Indicators
-        riesgos={riesgos}
+        riesgos={riesgos.length}
         procesos={procesos}
         planes={planes}
         eventos={eventos}
       />
       <div className='dashboard-container'>
-        <MatrixRisk />
+        <MatrixRisk riesgos={riesgos} />
       </div>
     </div>
   )
