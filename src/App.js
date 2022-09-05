@@ -18,35 +18,13 @@ function App() {
       .catch((error) => console.error(error))
   }, [])
 
-  const [indicators, setIndicators] = useState({
-    riesgos: 0,
-    procesos: 34,
-    planes: 50,
-    eventos: 650
-  })
-
   return (
     <div className='App'>
       <Router>
         <Sidebar />
         <Routes>
-          <Route
-            path='/'
-            element={
-              <Dashboard
-                riesgos={riesgos}
-                procesos={indicators.procesos}
-                planes={indicators.planes}
-                eventos={indicators.eventos}
-              />
-            }
-          />
-          <Route
-            path='/riesgos'
-            element={
-              <Riesgos indicators={indicators} setIndicators={setIndicators} />
-            }
-          />
+          <Route path='/' element={<Dashboard riesgos={riesgos} />} />
+          <Route path='/riesgos' element={<Riesgos riesgos={riesgos} />} />
         </Routes>
       </Router>
     </div>

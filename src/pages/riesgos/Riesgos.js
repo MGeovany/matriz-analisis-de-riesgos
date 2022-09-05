@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button } from '@mantine/core'
 import Form from './Form'
 import { Riesgo } from '../../API'
@@ -7,8 +7,8 @@ import { TablaRiesgos } from './TablaRiesgo'
 import { Header } from '../../components/Header'
 import './RiesgosStyles.css'
 
-export const Riesgos = () => {
-  const [RiesgosList, setRiesgosList] = React.useState([])
+export const Riesgos = ({ riesgos }) => {
+  const [RiesgosList, setRiesgosList] = React.useState(riesgos)
   function onAdd(riesgo) {
     Riesgo()
       .save(riesgo)
@@ -44,15 +44,6 @@ export const Riesgos = () => {
         console.error(error.response)
       })
   }
-
-  useEffect(() => {
-    Riesgo()
-      .get()
-      .then((res) => {
-        setRiesgosList(res)
-      })
-      .catch((error) => console.error(error))
-  }, [])
 
   return (
     <>
