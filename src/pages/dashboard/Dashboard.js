@@ -8,6 +8,7 @@ import {
   IconTimeline,
   IconCalendarEvent
 } from '@tabler/icons'
+import { MatrixRisk } from '../../components/MatrixRisk'
 export const Dashboard = ({ riesgos, procesos, planes, eventos }) => {
   return (
     <div className='side-container'>
@@ -18,7 +19,9 @@ export const Dashboard = ({ riesgos, procesos, planes, eventos }) => {
         planes={planes}
         eventos={eventos}
       />
-      <div className='dashboard-container'></div>
+      <div className='dashboard-container'>
+        <MatrixRisk />
+      </div>
     </div>
   )
 }

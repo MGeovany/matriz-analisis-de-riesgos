@@ -30,7 +30,7 @@
 
 .dashboard-container {
   width: 100%;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 260px);
 
   margin-top: 2rem;
   background: #ffffff;
@@ -49,4 +49,42 @@
 
 .hero-box > span {
   margin-right: 0.5rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 12px 12px;
+  grid-auto-flow: row;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+    '. . . . .'
+    '. . . . .'
+    '. . . . .'
+    '. . . . .'
+    '. . . . .';
+
+  height: 95%;
+  padding: 1rem;
+}
+.container > .row {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.bajo {
+  background-color: #86df8e;
+}
+
+.medio {
+  background-color: #fedf59;
+}
+
+.alto {
+  background-color: #ff7472;
 }
