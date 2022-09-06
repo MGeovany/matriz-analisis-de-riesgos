@@ -75,16 +75,29 @@
   width: 100%;
   height: 100%;
   border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 35px;
+  font-weight: 900;
+  font-family: var(--albert);
 }
 
 .bajo {
-  background-color: #86df8e;
+  background-color: #2aaa6b;
 }
 
 .medio {
-  background-color: #fedf59;
+  background-color: #ffc043;
 }
 
 .alto {
-  background-color: #ff7472;
+  background-color: #f17649;
+}
+
+.severo {
+  background-color: #f25251;
 }
