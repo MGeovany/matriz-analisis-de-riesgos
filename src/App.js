@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Dashboard } from './pages/dashboard/Dashboard'
 import { Sidebar } from './components/Sidebar'
 import { Riesgos } from './pages/riesgos/Riesgos'
+import { PoliticaSeguridad } from './pages/politicadeSeguridad/PoliticaSeguridad'
+import { PlanAccion } from './pages/plandeAccion/PlanAccion'
+import { PlanSeguridad } from './pages/plandeSeguridad/PlanSeguridad'
 
 function App() {
   const [riesgos, setRiesgos] = useState([''])
@@ -26,6 +29,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard riesgos={riesgos} />} />
           <Route path='/riesgos' element={<Riesgos riesgos={riesgos} />} />
+          <Route path='/politicas' element={<PoliticaSeguridad />} />
+          <Route path='/planseguridad' element={<PlanSeguridad />} />
+          <Route path='/planaccion' element={<PlanAccion />} />
         </Routes>
       </Router>
     </div>
