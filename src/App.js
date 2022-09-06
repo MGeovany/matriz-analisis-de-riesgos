@@ -14,6 +14,7 @@ function App() {
       .get()
       .then((res) => {
         setRiesgos(res)
+        console.log(res)
       })
       .catch((error) => console.error(error))
   }, [])

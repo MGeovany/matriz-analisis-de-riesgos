@@ -33,7 +33,7 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
       </td>
       <td>
         <Delete
-          trigger={<IconTrash cursor='pointer' color='#12131c' />}
+          trigger={<IconTrash cursor='pointer' color='#228be6' />}
           handler={onDelete}
           riesgo={element.Id}
         />
