@@ -1,7 +1,7 @@
 /* eslint-disable space-before-function-paren */
 import axios from 'axios'
 
-const server = 'https://afternoon-river-54760.herokuapp.com/'
+const server = 'https://seguridad-api.herokuapp.com'
 
 const api = axios.create({
   baseURL: server
