@@ -8,8 +8,8 @@ import { TablaRiesgos } from './TablaRiesgo'
 import { Header } from '../../components/Header'
 import './RiesgosStyles.css'
 
-export const Riesgos = () => {
-  const [RiesgosList, setRiesgosList] = useState([])
+export const Riesgos = ({ riesgos }) => {
+  const [RiesgosList, setRiesgosList] = React.useState(riesgos)
   function onAdd(riesgo) {
     Riesgo()
       .save(riesgo)
@@ -22,7 +22,6 @@ export const Riesgos = () => {
   }
 
   function onEdit(riesgo) {
-    console.log(riesgo)
     Riesgo()
       .edit(riesgo)
       .then((res) => {
@@ -47,47 +46,18 @@ export const Riesgos = () => {
       })
   }
 
-  React.useEffect(() => {
-    Riesgo()
-      .get()
-      .then((res) => {
-        setRiesgosList(res)
-      })
-      .catch((error) => console.error(error))
-  }, [])
-
   return (
     <>
       <div className='side-container'>
         <Header title='Riesgos' />
-        <Form trigger={<Button>Nuevo</Button>} handler={onAdd} />
-        <div className='containerTabla'>
+        <div className='containerTable'>
           <TablaRiesgos
             onEdit={onEdit}
             onDelete={onDelete}
             elements={RiesgosList}
           />
-        </div>
-        <nav>
-          <ul className='nav_links'>
-            <li>
-              <Form trigger={<Button>Nuevo</Button>} handler={onAdd} />
-            </li>
-            <li>
-              <Button variant='light'>Descargar PDF</Button>
-            </li>
-          </ul>
-        </nav>
-        =======
-        <div className='containerTabla'>
-          <div className='containerTabla2'>
-            <TablaRiesgos
-              onEdit={onEdit}
-              onDelete={onDelete}
-              elements={RiesgosList}
-            />
-          </div>
-          <div>
+
+          <div style={{ padding: '2rem' }}>
             <ul className='nav_links'>
               <li>
                 <Form trigger={<Button>Nuevo</Button>} handler={onAdd} />

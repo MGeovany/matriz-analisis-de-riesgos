@@ -8,22 +8,21 @@ import {
   IconTimeline,
   IconCalendarEvent
 } from '@tabler/icons'
-export const Dashboard = ({ riesgos, procesos, planes, eventos }) => {
+import { MatrixRisk } from '../../components/MatrixRisk'
+
+export const Dashboard = ({ riesgos }) => {
   return (
     <div className='side-container'>
       <Header title='Bienvenido, Jhon Doe' />
-      <Indicators
-        riesgos={riesgos}
-        procesos={procesos}
-        planes={planes}
-        eventos={eventos}
-      />
-      <div className='dashboard-container'></div>
+      <Indicators riesgos={riesgos.length} />
+      <div className='dashboard-container'>
+        <MatrixRisk riesgos={riesgos} />
+      </div>
     </div>
   )
 }
 
-const Indicators = ({ riesgos, procesos, planes, eventos }) => {
+const Indicators = ({ riesgos }) => {
   return (
     <div className='hero-container'>
       <div className='hero-box'>
@@ -39,7 +38,7 @@ const Indicators = ({ riesgos, procesos, planes, eventos }) => {
           <IconBooks size={30} />
         </span>
         <span className='hero-text'>
-          {procesos} <br /> <span className='hero-text-small'>Procesos</span>
+          pro <br /> <span className='hero-text-small'>Procesos</span>
         </span>
       </div>
       <div className='hero-box'>
@@ -47,7 +46,7 @@ const Indicators = ({ riesgos, procesos, planes, eventos }) => {
           <IconTimeline size={30} />
         </span>
         <span className='hero-text'>
-          {planes} <br /> <span className='hero-text-small'>Planes</span>
+          plA <br /> <span className='hero-text-small'>Planes</span>
         </span>
       </div>
       <div className='hero-box'>
@@ -55,7 +54,7 @@ const Indicators = ({ riesgos, procesos, planes, eventos }) => {
           <IconCalendarEvent size={30} />
         </span>
         <span className='hero-text'>
-          {eventos} <br /> <span className='hero-text-small'>Eventos</span>
+          eventos <br /> <span className='hero-text-small'>Eventos</span>
         </span>
       </div>
     </div>

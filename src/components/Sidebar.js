@@ -4,9 +4,9 @@ import {
   IconLayoutDashboard,
   IconAlertTriangle,
   IconBooks,
-  IconTimeline,
+  IconShieldLock,
   IconLogout,
-  IconCalendarEvent
+  IconTools
 } from '@tabler/icons'
 import { Link } from 'react-router-dom'
 import './SidebarStyles.css'
@@ -62,12 +62,12 @@ const data = [
   { label: 'Dashboard', icon: IconLayoutDashboard, route: '/' },
   { label: 'Riesgos', icon: IconAlertTriangle, route: '/riesgos' },
   {
-    label: 'Planes de contingencia',
-    icon: IconTimeline,
-    route: '/planes'
+    label: 'Politicas de seguridad',
+    icon: IconShieldLock,
+    route: '/politicas'
   },
-  { label: 'Procesos', icon: IconBooks, route: '/procesos' },
-  { label: 'Eventos', icon: IconCalendarEvent, route: '/eventos' }
+  { label: 'Planes de Seguridad', icon: IconBooks, route: '/planseguridad' },
+  { label: 'Planes de Accion', icon: IconTools, route: '/planaccion' }
 ]
 
 export const Sidebar = () => {

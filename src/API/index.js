@@ -1,7 +1,7 @@
 /* eslint-disable space-before-function-paren */
 import axios from 'axios'
 
-const server = 'https://afternoon-river-54760.herokuapp.com/'
+const server = 'https://seguridad-api.herokuapp.com/'
 
 const api = axios.create({
   baseURL: server
@@ -40,7 +40,19 @@ export const Riesgo = () => ({
     return response.data
   }
 })
+
+export const Resumen = () => ({
+  getResume: async (PlanSeguridadID) => {
+    let planSeguridad = {}
+    const response = await api.get(`/plan-seguridad/${PlanSeguridadID}/resume`)
+    planSeguridad = response.data
+    return response.data
+  }
+})
+
 const API = () => ({
-  Riesgo
+  Riesgo,
+  Resumen,
+  Opciones
 })
 export default API

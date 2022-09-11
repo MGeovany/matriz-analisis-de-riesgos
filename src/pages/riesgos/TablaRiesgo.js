@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+/* eslint-disable react/prop-types */
+import React from 'react'
 import { Table } from '@mantine/core'
 import './RiesgosStyles.css'
-import './TablaRiesgo.css'
 import { IconEye, IconTrash } from '@tabler/icons'
 import Form from './Form'
 import Delete from './Delete'
 import { Opciones } from '../../API'
 
-/* eslint-disable react/prop-types */
 export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
-  const [ListaNivelRiesgo, setListaNivelRiesgo] = useState([])
-  useState(() => {
+  const [ListaNivelRiesgo, setListaNivelRiesgo] = React.useState([])
+  React.useState(() => {
     Opciones()
       .NivelRiesgo()
       .then((data) => setListaNivelRiesgo(data))
@@ -34,7 +33,7 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
       </td>
       <td>
         <Delete
-          trigger={<IconTrash cursor='pointer' color='#f05761' />}
+          trigger={<IconTrash cursor='pointer' color='#228be6' />}
           handler={onDelete}
           riesgo={element.Id}
         />
@@ -43,7 +42,14 @@ export function TablaRiesgos({ elements = [], onEdit, onDelete }) {
   ))
 
   return (
-    <div className='contenedorTabla'>
+    <div
+      style={{
+        padding: '2rem',
+        overflowY: 'scroll',
+        maxHeight: '550px',
+        borderBottom: '1px solid #e7f5ff'
+      }}
+    >
       <Table highlightOnHover>
         <thead>
           <tr>

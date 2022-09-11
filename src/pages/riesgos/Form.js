@@ -197,8 +197,7 @@ export default function Form({
             </Grid.Col>
             <Group>
               <Button variant='contained' onClick={submitForm}>
-                {' '}
-                Mandar{' '}
+                Mandar
               </Button>
               <Button variant='outline' onClick={() => setOpen(false)}>
                 Random email
