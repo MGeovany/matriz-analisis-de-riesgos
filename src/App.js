@@ -31,7 +31,7 @@ function App() {
           <Route path='/riesgos' element={<Riesgos riesgos={riesgos} />} />
           <Route path='/politicas' element={<PoliticaSeguridad />} />
           <Route path='/planseguridad' element={<PlanSeguridad />} />
-          <Route path='/planaccion' element={<PlanAccion />} />
+          <Route path='/planseguridad/:PlanSeguridad/planaccion' element={<PlanAccion />} />
         </Routes>
       </Router>
     </div>
