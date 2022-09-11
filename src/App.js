@@ -32,6 +32,7 @@ function App() {
           <Route path='/planseguridad' element={<PlanSeguridad />} />
           <Route path='/planaccion' element={<PlanAccion />} />
           <Route path='/resumen-plan-seguridad/:PlanSeguridadId' element={<Resumen />} />
+          <Route path='/planseguridad/:PlanSeguridad/planaccion' element={<PlanAccion />} />
         </Routes>
       </Router>
     </div>

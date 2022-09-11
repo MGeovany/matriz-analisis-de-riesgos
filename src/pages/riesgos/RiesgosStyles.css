@@ -58,7 +58,7 @@
   background-color: #ffffff;
 }
 
-.contenedorTabla th {
+.contenedorTabla thead {
   position: sticky;
   top: 0px;
   background-color: #f3f3f3;
