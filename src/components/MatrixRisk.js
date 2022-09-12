@@ -1,64 +1,87 @@
 /* eslint-disable space-before-function-paren */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
+import { Riesgo } from '../API'
 
 export const MatrixRisk = ({ riesgos }) => {
-  const [nivelRiesgo, setNivelRiesgo] = useState({
-    bajo: [1, 2, 3, 4, 5, 6, 7, 8],
-    medio: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    severo: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    alto: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  })
+  const [riesgosList, setRiesgosList] = useState([])
+  const [matrixRisk, setRiesgoMatrix] = useState([
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+  ])
+  React.useState(() => {
+    Riesgo()
+      .get('riesgos')
+      .then((res) => {
+        setRiesgosList(res)
+        MatrixRiskCounter(res)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }, [])
 
-  const setNiveles = (riesgos) => {
-    for (let i = 0; i < 8; i++) {
-      const riesgosItem = riesgos[i]
-      console.log('for', riesgosItem)
+  const matrixPoints = [
+    [1, 2, 4, 7, 11],
+    [3, 5, 8, 12, 16],
+    [6, 9, 13, 17, 20],
+    [10, 14, 18, 21, 23],
+    [15, 19, 22, 24, 25]
+  ]
 
-      /*  if (riesgosItem?.NivelRiesgo > 2) {
-        console.log('in')
-        setNivelRiesgo({
-          bajo: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+  function MatrixRiskCounter(riesgos) {
+    const riesgoCount = [...matrixRisk]
+    const test = riesgos.map((riesgo) => {
+      return matrixPoints.map((i, idxi) => {
+        return i.map((j, idxj) => {
+          if (riesgo.NivelRiesgo === j) {
+            const value = parseInt(riesgoCount[idxi][idxj])
+            riesgoCount[idxi][idxj] = value + 1
+          }
+          return 0
         })
-      } */
-    }
+      })
+    })
+    setRiesgoMatrix(riesgoCount)
   }
-
-  useEffect(() => {
-    setNiveles(riesgos)
-  }, [riesgos])
 
   return (
     <div className='container'>
-      <div className='row bajo'>{nivelRiesgo.bajo[0]}</div>
-      <div className='row bajo'>{nivelRiesgo.bajo[1]}</div>
-      <div className='row bajo'>{nivelRiesgo.bajo[2]}</div>
-      <div className='row medio'>{nivelRiesgo.medio[0]}</div>
-      <div className='row alto'>{nivelRiesgo.alto[0]}</div>
+      <div className='row bajo'>{showMatrixResult(matrixRisk, 0, 0)}</div>
+      <div className='row bajo'>{showMatrixResult(matrixRisk, 0, 1)}</div>
+      <div className='row bajo'>{showMatrixResult(matrixRisk, 0, 2)}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 0, 3)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 0, 4)}</div>
 
-      <div className='row bajo'>{nivelRiesgo.bajo[3]}</div>
-      <div className='row bajo'>{nivelRiesgo.bajo[4]}</div>
-      <div className='row medio'>{nivelRiesgo.medio[1]}</div>
-      <div className='row medio'>{nivelRiesgo.medio[2]}</div>
-      <div className='row alto'>{nivelRiesgo.alto[1]}</div>
+      <div className='row bajo'>{showMatrixResult(matrixRisk, 1, 0)}</div>
+      <div className='row bajo'>{showMatrixResult(matrixRisk, 1, 1)}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 1, 2)}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 1, 3)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 1, 4)}</div>
 
-      <div className='row bajo'>{nivelRiesgo.bajo[5]}</div>
-      <div className='row medio'>{nivelRiesgo.medio[3]}</div>
-      <div className='row medio'>{nivelRiesgo.medio[4]}</div>
-      <div className='row alto'>{nivelRiesgo.alto[2]}</div>
-      <div className='row severo'>{nivelRiesgo.severo[0]}</div>
+      <div className='row bajo'>{showMatrixResult(matrixRisk, 2, 0)}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 2, 1)}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 2, 2)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 2, 3)}</div>
+      <div className='row severo'>{showMatrixResult(matrixRisk, 2, 4)}</div>
 
-      <div className='row medio'>{nivelRiesgo.medio[5]}</div>
-      <div className='row medio'>{nivelRiesgo.medio[6]}</div>
-      <div className='row alto'>{nivelRiesgo.alto[3]}</div>
-      <div className='row alto'>{nivelRiesgo.alto[4]}</div>
-      <div className='row severo'>{nivelRiesgo.severo[1]}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 3, 0)}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 3, 1)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 3, 2)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 3, 3)}</div>
+      <div className='row severo'>{showMatrixResult(matrixRisk, 3, 4)}</div>
 
-      <div className='row medio'>{nivelRiesgo.medio[7]}</div>
-      <div className='row alto'>{nivelRiesgo.severo[5]}</div>
-      <div className='row alto'>{nivelRiesgo.severo[6]}</div>
-      <div className='row severo'>{nivelRiesgo.severo[2]}</div>
-      <div className='row severo'>{nivelRiesgo.severo[3]}</div>
+      <div className='row medio'>{showMatrixResult(matrixRisk, 4, 0)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 4, 1)}</div>
+      <div className='row alto'>{showMatrixResult(matrixRisk, 4, 2)}</div>
+      <div className='row severo'>{showMatrixResult(matrixRisk, 4, 3)}</div>
+      <div className='row severo'>{showMatrixResult(matrixRisk, 4, 4)}</div>
     </div>
   )
 }
+const showMatrixResult = (matrix, i, j) =>
+  matrix[i][j] === 0 ? '' : matrix[i][j]

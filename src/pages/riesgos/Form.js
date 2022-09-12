@@ -1,5 +1,7 @@
 /* eslint-disable multiline-ternary */
-import React from 'react'
+
+import React, { useState } from 'react'
+
 import {
   Modal,
   TextInput,
@@ -23,11 +25,10 @@ export default function Form({
   action = 'add',
   riesgo
 }) {
-  const [open, setOpen] = React.useState(false)
-  const [ListaImpacto, setListaImpacto] = React.useState([])
-  const [ListaPosibilidad, setListaPosibilidad] = React.useState([])
-  const [ListaNivelRiesgo, setListaNivelRiesgo] = React.useState([])
-
+  const [open, setOpen] = useState(false)
+  const [ListaImpacto, setListaImpacto] = useState([])
+  const [ListaPosibilidad, setListaPosibilidad] = useState([])
+  const [ListaNivelRiesgo, setListaNivelRiesgo] = useState([])
   const form = useForm({
     initialValues: {
       Id: riesgo ? riesgo.Id : '',
@@ -45,7 +46,7 @@ export default function Form({
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Correo Invalido')
     }
   })
-  React.useState(() => {
+  useState(() => {
     Opciones()
       .Impacto()
       .then((data) => setListaImpacto(data))
@@ -74,8 +75,15 @@ export default function Form({
       NivelPosibilidad: ListaPosibilidad.find(
         (item) => item.value === form.values.IdPosibilidad
       ).label,
+      NivelRiesgo:
+        ListaPosibilidad.find(
+          (item) => item.value === form.values.IdPosibilidad
+        ).puntaje *
+        ListaImpacto.find((item) => item.value === form.values.IdImpacto)
+          .puntaje,
       NivelRiesgoDescripcion: getNivelRiesgo(form.values.NivelRiesgo)
     })
+    form.reset()
     setOpen(false)
   }
   return (

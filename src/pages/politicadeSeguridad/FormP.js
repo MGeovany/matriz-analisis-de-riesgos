@@ -6,12 +6,14 @@ import {
   Group,
   Button,
   Grid,
-  Stack
+  Stack,
+  MultiSelect
 } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
 import { RichTextEditor } from '@mantine/rte'
 import { useForm } from '@mantine/form'
 import dayjs from 'dayjs'
+import { Opciones, GetRiesgoAsociadosPoliticas } from '../../API'
 /* eslint-disable react/prop-types */
 export default function FormP({
   trigger: Trigger,
@@ -20,6 +22,24 @@ export default function FormP({
   politica
 }) {
   const [open, setOpen] = React.useState(false)
+  const [RiesgoAsociadosList, setRiesgoAsociadosList] = React.useState([])
+  React.useEffect(() => {
+    Opciones()
+      .Riesgo()
+      .then((data) => {
+        setRiesgoAsociadosList(data)
+      })
+      .catch((err) => console.error(err))
+    getRiesgosAsociadosPoliticasByID()
+  }, [])
+
+  function getRiesgosAsociadosPoliticasByID() {
+    if (politica) {
+      GetRiesgoAsociadosPoliticas(politica.Id)
+        .then((data) => form.setFieldValue('riesgos', data))
+    }
+  }
+
   const form = useForm({
     initialValues: {
       Id: politica ? politica.Id : '',
@@ -31,110 +51,113 @@ export default function FormP({
       Recursos: politica ? politica.Recursos : '',
       Version: politica ? politica.Version : '',
       AutorizadoPor: politica ? politica.AutorizadoPor : '',
-      Descripcion: politica ? politica.Descripcion : ''
+      Descripcion: politica ? politica.Descripcion : '',
+      riesgos: []
     }
   })
   function submitForm() {
-    handler({
-      Id: form.values.Id,
-      Nombre: form.values.Nombre,
-      Identificador: form.values.Identificador,
-      FechaCreado: dayjs(form.values.FechaCreado).format('YYYY-MM-DD'),
-      FechaActualizado: dayjs(form.values.FechaActualizado).format('YYYY-MM-DD'),
-      CreadorPor: form.values.CreadorPor,
-      AutorizadoPor: form.values.AutorizadoPor,
-      Version: form.values.Version,
-      Recursos: form.values.Recursos,
-      Descripcion: form.values.Descripcion
-    })
+    handler(
+      {
+        Id: form.values.Id,
+        Identificador: form.values.Identificador,
+        Version: form.values.Version,
+        FechaCreado: dayjs(form.values.FechaCreado).format('YYYY-MM-DD'),
+        FechaActualizado: dayjs(form.values.FechaActualizado).format(
+          'YYYY-MM-DD'
+        ),
+        CreadorPor: form.values.CreadorPor,
+        AutorizadoPor: form.values.AutorizadoPor,
+        Nombre: form.values.Nombre,
+        Descripcion: form.values.Descripcion
+      },
+      form.values.riesgos
+    )
+    form.reset()
+    setOpen(false)
   }
   return (
     <>
-    <div onClick={() => setOpen(true)}>{Trigger}</div>
-    <Modal
+      <div onClick={() => setOpen(true)}>{Trigger}</div>
+      <Modal
         size='xl'
         centered
         opened={open}
         onClose={() => setOpen(false)}
         title='Nueva Politica de Seguridad'
         gutter='xl'
-    >
+      >
         <form>
-        <Grid grow gutter='xl'>
+          <Grid grow gutter='xl'>
             <Grid.Col md={4} xs={12}>
-            <Stack>
+              <Stack>
                 <TextInput
-                label='Identificador'
-                placeholder='Identificador'
-                {...form.getInputProps('Identificador')}
+                  label='Identificador'
+                  placeholder='Identificador'
+                  {...form.getInputProps('Identificador')}
                 />
 
                 <DatePicker
-                placeholder="Selecciona una Fecha"
-                allowLevelChange={false}
-                label="Fecha Creado"
-                {...form.getInputProps('FechaCreado')}
+                  placeholder='Selecciona una Fecha'
+                  allowLevelChange={false}
+                  label='Fecha Creado'
+                  {...form.getInputProps('FechaCreado')}
                 />
 
                 <DatePicker
-                placeholder="Selecciona una Fecha"
-                allowLevelChange={false}
-                label="Fecha Actualizado"
-                {...form.getInputProps('FechaActualizado')}
+                  placeholder='Selecciona una Fecha'
+                  allowLevelChange={false}
+                  label='Fecha Actualizado'
+                  {...form.getInputProps('FechaActualizado')}
                 />
                 <TextInput
-                label='Creado Por'
-                {...form.getInputProps('CreadorPor')}
+                  label='Creado Por'
+                  {...form.getInputProps('CreadorPor')}
                 />
-            </Stack>
+              </Stack>
             </Grid.Col>
 
             <Grid.Col lg={6} xs={12}>
-            <Stack>
+              <Stack>
+                <TextInput label='Nombre' {...form.getInputProps('Nombre')} />
                 <TextInput
-                label='Nombre'
-                {...form.getInputProps('Nombre')}
+                  label='Autorizado'
+                  {...form.getInputProps('AutorizadoPor')}
                 />
-                <TextInput
-                label='Autorizado'
-                {...form.getInputProps('AutorizadoPor')}
-                />
-                <TextInput
-                label='Version'
-                {...form.getInputProps('Version')}
-                />
-            </Stack>
+                <TextInput label='Version' {...form.getInputProps('Version')} />
+                <MultiSelect
+                  data={RiesgoAsociadosList}
+                  label='Riesgos asociados'
+                  value={form.values.riesgos}
+                  onChange={(value) => {
+                    form.setFieldValue('riesgos', value)
+                  }}
+                ></MultiSelect>
+              </Stack>
             </Grid.Col>
             <Grid.Col md={12}>
-            <RichTextEditor
+              <RichTextEditor
                 controls={[
-                  ['bold', 'italic', 'underline', 'link', 'image'],
+                  ['bold', 'italic', 'underline', 'link'],
                   ['unorderedList', 'h1', 'h2', 'h3'],
-                  ['alignLeft', 'alignCenter', 'alignRight']]}
+                  ['alignLeft', 'alignCenter', 'alignRight']
+                ]}
                 placeholder='Descripción'
                 sticky={true}
                 stickyOffset={40}
-                {...form.getInputProps('Descripcion')}/>
+                {...form.getInputProps('Descripcion')}
+              />
             </Grid.Col>
             <Group>
-            <Button variant='contained' onClick={submitForm}>
+              <Button variant='contained' onClick={submitForm}>
                 Crear Politica
-            </Button>
-            <Button variant='outline' onClick={() => setOpen(false)}>
+              </Button>
+              <Button variant='outline' onClick={() => setOpen(false)}>
                 Cancelar
-            </Button>
+              </Button>
             </Group>
-        </Grid>
+          </Grid>
         </form>
-    </Modal>
+      </Modal>
     </>
   )
 }
-//   function ItemList({ label, puntaje, ...others }) {
-//     return (
-//       <Group {...others}>
-//         <div>{label}</div>
-//         <div>{puntaje}</div>
-//       </Group>
-//     )
-//   }

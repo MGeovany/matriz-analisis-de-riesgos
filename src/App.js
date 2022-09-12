@@ -9,7 +9,9 @@ import { Riesgos } from './pages/riesgos/Riesgos'
 import { PoliticaSeguridad } from './pages/politicadeSeguridad/PoliticaSeguridad'
 import { PlanAccion } from './pages/plandeAccion/PlanAccion'
 import { PlanSeguridad } from './pages/plandeSeguridad/PlanSeguridad'
-
+import Incidentes from './pages/Incidentes'
+import PlanRespuestas from './pages/PlanRespuesta'
+import Resumen from './pages/Resumen'
 function App() {
   const [riesgos, setRiesgos] = useState([''])
   useEffect(() => {
@@ -17,7 +19,6 @@ function App() {
       .get()
       .then((res) => {
         setRiesgos(res)
-        console.log(res)
       })
       .catch((error) => console.error(error))
   }, [])
@@ -31,7 +32,11 @@ function App() {
           <Route path='/riesgos' element={<Riesgos riesgos={riesgos} />} />
           <Route path='/politicas' element={<PoliticaSeguridad />} />
           <Route path='/planseguridad' element={<PlanSeguridad />} />
+          <Route path='/planaccion' element={<PlanAccion />} />
+          <Route path='/resumen-plan-seguridad/:PlanSeguridadId' element={<Resumen />} />
+          <Route path='/planseguridad/:PlanSeguridad/incidentes' element={<Incidentes />} />
           <Route path='/planseguridad/:PlanSeguridad/planaccion' element={<PlanAccion />} />
+          <Route path='/planseguridad/:PlanSeguridad/incidentes/:Incidente/planrespuesta' element={<PlanRespuestas />} />
         </Routes>
       </Router>
     </div>
