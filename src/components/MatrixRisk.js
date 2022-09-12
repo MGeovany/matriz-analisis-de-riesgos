@@ -1,6 +1,7 @@
 /* eslint-disable space-before-function-paren */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import { Riesgo } from '../API'
 
 export const MatrixRisk = ({ riesgos }) => {
@@ -17,10 +18,10 @@ export const MatrixRisk = ({ riesgos }) => {
       .get('riesgos')
       .then((res) => {
         setRiesgosList(res)
-        desmadre(res)
+        MatrixRiskCounter(res)
       })
       .catch((err) => {
-        console.log(err)
+        console.error(err)
       })
   }, [])
 
@@ -32,7 +33,7 @@ export const MatrixRisk = ({ riesgos }) => {
     [15, 19, 22, 24, 25]
   ]
 
-  function desmadre(riesgos) {
+  function MatrixRiskCounter(riesgos) {
     const riesgoCount = [...matrixRisk]
     const test = riesgos.map((riesgo) => {
       return matrixPoints.map((i, idxi) => {

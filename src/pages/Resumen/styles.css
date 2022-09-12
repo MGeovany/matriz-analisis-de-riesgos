@@ -1,0 +1,11 @@
+@media print{
+
+  .mantine-Navbar-root, .noprint{
+    display: none;
+  }
+    @page{
+        size: portrait; /* auto is default portrait; */
+        margin: 10px;
+        font-size: smaller;
+    }
+}   

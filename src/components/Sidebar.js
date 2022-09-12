@@ -5,8 +5,7 @@ import {
   IconAlertTriangle,
   IconBooks,
   IconShieldLock,
-  IconLogout,
-  IconTools
+  IconLogout
 } from '@tabler/icons'
 import { Link } from 'react-router-dom'
 import './SidebarStyles.css'
@@ -66,8 +65,7 @@ const data = [
     icon: IconShieldLock,
     route: '/politicas'
   },
-  { label: 'Planes de Seguridad', icon: IconBooks, route: '/planseguridad' },
-  { label: 'Planes de Accion', icon: IconTools, route: '/planaccion' }
+  { label: 'Planes de Seguridad', icon: IconBooks, route: '/planseguridad' }
 ]
 
 export const Sidebar = () => {

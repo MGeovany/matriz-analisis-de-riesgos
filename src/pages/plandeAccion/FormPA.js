@@ -6,10 +6,11 @@ import {
   Group,
   Button,
   Grid,
-  Stack
+  Stack,
+  Textarea
 } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
-import { RichTextEditor } from '@mantine/rte'
+
 import { useForm } from '@mantine/form'
 import dayjs from 'dayjs'
 import { useParams } from 'react-router-dom'
@@ -35,7 +36,7 @@ export default function FormPS({
   })
   function submitForm() {
     handler({
-      PlanSeguridad: PlanSeguridad,
+      PlanSeguridad,
       Id: form.values.Id,
       FechaInicio: dayjs(form.values.FechaInicio).format('YYYY-MM-DD'),
       FechaFin: dayjs(form.values.FechaFin).format('YYYY-MM-DD'),
@@ -88,14 +89,8 @@ export default function FormPS({
             </Stack>
             </Grid.Col>
             <Grid.Col md={12} my={8}>
-            <RichTextEditor
-                controls={[
-                  ['bold', 'italic', 'underline', 'link', 'image'],
-                  ['unorderedList', 'h1', 'h2', 'h3'],
-                  ['alignLeft', 'alignCenter', 'alignRight']]}
-                placeholder='Descripción'
-                sticky={true}
-                stickyOffset={40}
+            <Textarea
+                label='Descripcion'
                 {...form.getInputProps('Descripcion')}/>
             </Grid.Col>
             <Group>

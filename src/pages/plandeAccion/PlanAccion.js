@@ -13,28 +13,28 @@ export const PlanAccion = () => {
     Accion().get(PlanSeguridad).then((res) => {
       setListaAccion(res)
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
   }, [])
   function onAdd(accion) {
     Accion().save(accion).then((res) => {
       setListaAccion([...AccionLista, accion])
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
   }
   function onEdit(accion) {
     Accion().edit(accion).then((res) => {
       setListaAccion([...AccionLista.filter((i) => i.Id !== accion.Id), accion])
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
   }
   function onDelete(PlanSeguridad, Id) {
     Accion().delete(PlanSeguridad, Id).then((res) => {
       setListaAccion([...AccionLista.filter((i) => i.Id !== Id)])
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
   }
   return (

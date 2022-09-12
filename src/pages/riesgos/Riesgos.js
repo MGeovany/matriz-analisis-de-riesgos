@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Button } from '@mantine/core'
 import Form from './Form'
@@ -22,6 +22,7 @@ export const Riesgos = ({ riesgos }) => {
   }
 
   function onEdit(riesgo) {
+    console.log(riesgo)
     Riesgo()
       .edit(riesgo)
       .then((res) => {

@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
 import { Modal, Group, Button, Grid, Text } from '@mantine/core'
 
 /* eslint-disable react/prop-types */
-export default function Eliminar({ trigger: Trigger, handler, riesgo }) {
+export default function Eliminar({ trigger: Trigger, handler, incidente, PlanSeguridad }) {
   const [open, setOpen] = React.useState(false)
   function submitForm() {
-    handler(riesgo)
+    handler(PlanSeguridad, incidente)
     setOpen(false)
   }
   return (
@@ -17,7 +16,7 @@ export default function Eliminar({ trigger: Trigger, handler, riesgo }) {
         centered
         opened={open}
         onClose={() => setOpen(false)}
-        title={`Eliminar riesgo ${riesgo}`}
+        title={`Eliminar riesgo ${incidente}`}
         gutter='xl'
       >
         <Grid>

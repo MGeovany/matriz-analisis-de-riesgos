@@ -29,7 +29,6 @@ export default function Form({
   const [ListaImpacto, setListaImpacto] = useState([])
   const [ListaPosibilidad, setListaPosibilidad] = useState([])
   const [ListaNivelRiesgo, setListaNivelRiesgo] = useState([])
-
   const form = useForm({
     initialValues: {
       Id: riesgo ? riesgo.Id : '',
@@ -84,6 +83,7 @@ export default function Form({
           .puntaje,
       NivelRiesgoDescripcion: getNivelRiesgo(form.values.NivelRiesgo)
     })
+    form.reset()
     setOpen(false)
   }
   return (
